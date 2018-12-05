@@ -65,6 +65,10 @@
       </div>
 
 
+      <btn btnText="停车缴费" @submit="submit"></btn>
+      <btn2 btn2Text="导航寻车" ></btn2>
+
+
 
 
 
@@ -92,7 +96,7 @@
       <!--3  de le te 必须和子组件keyboard中的$emit 中的de le te  保持一致-->
       <!--4  ca rNoI nputI ndex 作为和子组件的连接，在子组件的props中必须有-->
       <!--1  CarN oIn putI ndex  在子组件中的props 用来渲染子组件
-根据它的值来返回对应的键盘页面  省份值/数字字母值等-->
+       根据它的值来返回对应的键盘页面  省份值/数字字母值等-->
 
     </keyBoard>
 
@@ -104,11 +108,16 @@
 
 <script>
   import keyBoard from "./P02_keyBoard"
+  import btn from "./P03_feeBtn"
+  import btn2 from "./P04_searchCarBtn"
+
+  import { Toasts , open ,close} from "../mintUi";
+
 
 
   export default {
     name: "Page01_carNoInput",
-    components: {keyBoard},
+    components: {keyBoard,btn,btn2},
     data() {
       return {
         commodity: '东莞国际汇一城',//社区名称
@@ -220,6 +229,7 @@
       },
 
       submit() {
+        console.log("ABC")
 
         this.activeIndex == 0 ? this.carno = this.carno.substring(0, 7) : this.carno = this.carno.substring(0, 8)
         //substring() 方法用于提取字符串中介于两个指定下标之间的字符  .即提取车牌号用于提交
@@ -297,13 +307,12 @@
     left:0rem;
 
     position:fixed;
-    background-color: gray;
 
     display:flex;
     /*flex-direction:row;*/  /*main类中只有一个content元素,context居中*/
     justify-content: center;
 
-
+    background-color: gray;
   }
 
   .content{
